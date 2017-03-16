@@ -1,5 +1,5 @@
 # A Benchmark Suite for Measuring Parallel Computing Performance in MDAnalysis Library
-[Mahzad Khoshlessan][] , [Oliver Beckstein][]
+[Mahzad Khoshlessan](https://github.com/mkhoshle) , [Oliver Beckstein](https://github.com/orbeckst)
 
 ### Abstract
 
@@ -26,5 +26,3 @@ MDAnalysis, High Performance Computing, Dask, Map-Reduce job, File formats
 
 [MDAnalysis]: http://mdanalysis.org
 [Dask]: http://dask.pydata.orgi
-[Mahzad Khoshlessan]: mkhoshle@asu.edu
-[Oliver Beckstein]: obeckste@asu.edu
