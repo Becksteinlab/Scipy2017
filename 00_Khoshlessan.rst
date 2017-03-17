@@ -50,8 +50,7 @@ Keywords
    MDAnalysis, High Performance Computing, Dask, Map-Reduce job, File formats
 
 
-The draft of our benchmark study including all of our data is available on figshare at DOI
-10.6084/m9.figshare.4695742_; 
+The draft of our benchmark study including all of our data is available on figshare at DOI: [10.6084/m9.figshare.4695742]_; 
 
 Data Files
 ----------
