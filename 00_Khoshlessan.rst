@@ -1,22 +1,29 @@
+.. -*- mode: rst; fill-column: 9999; coding: utf-8 -*-
+
 :author: Mahzad Khoshlessan
 :email: mkhoshle@asu.edu
 :institution: Arizona State University
-:corresponding:
 
 :author: Oliver Beckstein
 :email: obeckste@asu.edu 
 :institution: Arizona State University 
+:corresponding:
 
-------------------------------------------------
-Parallel Analysis in MDAnalysis using Dask Parallel Computing Library
-------------------------------------------------
+-------------------------------------------------------------------------
+Parallel Analysis in MDAnalysis using the Dask Parallel Computing Library
+-------------------------------------------------------------------------
 
 Brief abstract
 --------------
-In the present study, we evaluate performance for parallel map-reduce type analysis and use it to investigate the performance of MDAnalysis_ with Dask_ parallel computing library for task-graph based computing [Khoshlessan2017]_. 
-A range of different file formats and different trajectory sizes are tested on different high performance computing resources.
-Results are obtained both on a single node and across multiple nodes.
-In this paper, we primarily discuss the effect of file format and hardware on the performance and try to identify performance bottlenecks, which can be used for further optimization and bringing HPC into MDAnalysis library. 
+
+The analysis of biomolecular computer simulations has become a challenge because the amount of output data is now routinely in the terabyte range.
+We evaluate if this challenge can be met by a parallel map-reduce approach with the Dask_ parallel computing library for task-graph based computing coupled with our MDAnalysis_ Python library for the analysis of molecular dynamics (MD) simulations [Gowers2016]_.
+We performed a representative performance evaluation, taking into account the highly heterogenous computing environment that researchers typically work in together with the diversity of existing file formats for MD trajectory data.
+We found that the the underlying storage system (solid state drives, parallel file systems, or simple spinning platter disks) can be a deciding performance factor that leads to data ingestion becoming the primary bottle neck in the analysis work flow.
+However, the choice of the data file format can mitigate the effect of the storage system; in particular, the commonly used "Gromacs XTC" trajectory format, which is highly compressed, can exhibit strong scaling close to ideal due to trading a decrease in global storage access load against and increase in local per-core cpu-intensive decompression.
+Scaling was tested on single nodes and multiple nodes on national and local supercomputing resources as well as typical workstations.
+In summary, we show that, due to the focus on high interoperability in the scientific Python eco system, it is straightforward to implement map-reduce with Dask in MDAnalysis and provide an in-depth analysis of the considerations to obtain good parallel performance on HPC resources.
+
 
 Long description
 ----------------
@@ -42,7 +49,7 @@ At the end, we also suggest the promising approaches, including using file strip
 
 Keywords
 --------
-   MDAnalysis, High Performance Computing, Dask, Map-Reduce job
+MDAnalysis, High Performance Computing, Dask, Map-Reduce
 
 
 The draft of the present study including all of our data is available on figshare at DOI: `10.6084/m9.figshare.4695742`_; 
@@ -53,8 +60,8 @@ Data Files
 The topology file (PSF format) and the trajectory (DCD) used for the benchmark
 can be downloaded from dropbox
 
-- adk4AKE.psf_
-- 1ake_007-nowater-core-dt240ps.dcd_
+- `adk4AKE.psf`_
+- `1ake_007-nowater-core-dt240ps.dcd`_
 
 Files in XTC and NetCDF formats are generated from the DCD.
 
@@ -69,13 +76,16 @@ Tested libraries
 
 References
 ----------
-.. [Khoshlessan2017] Khoshlessan, Mahzad; Beckstein, Oliver (2017): Parallel analysis in the MDAnalysis Library: Benchmark of Trajectory File Formats. figshare. doi:10.6084/m9.figshare.4695742
+
+.. [Gowers2016] R. J. Gowers, M. Linke, J. Barnoud, T. J. E. Reddy, M. N. Melo, S. L. Seyler, D. L. Dotson, J. Doman ́ski, S. Buchoux, I. M. Kenney, and O. Beckstein. MDAnalysis: A Python package for the rapid analysis of molecular dynamics simulations. In S. Benthall and S. Rostrup, editors, Proceedings of the 15th Python in Science Conference, pages 102 – 109, Austin, TX, 2016. SciPy. URL http://mdanalysis.org.
+
+.. [Khoshlessan2017] Khoshlessan, Mahzad; Beckstein, Oliver (2017): Parallel analysis in the MDAnalysis Library: Benchmark of Trajectory File Formats. figshare. doi:`10.6084/m9.figshare.4695742`_
 
 
 .. _MDAnalysis: http://mdanalysis.org
 .. _Dask: http://dask.pydata.org
 .. _Distributed: https://distributed.readthedocs.io/
 .. _NumPy: http://numpy.scipy.org/
-.. _10.6084/m9.figshare.4695742: https://doi.org/10.6084/m9.figshare.4695742
-.. _adk4AKE.psf: https://www.dropbox.com/sh/ln0klc9j7mhvxkg/AAAL5eP1vrn0tK-67qVDnKeua/Trajectories/equilibrium/adk4AKE.psf
-.. _1ake_007-nowater-core-dt240ps.dcd: https://www.dropbox.com/sh/ln0klc9j7mhvxkg/AABSaNJ0fRFgY1UfxIH_jWtka/Trajectories/equilibrium/1ake_007-nowater-core-dt240ps.dcd
+.. _`10.6084/m9.figshare.4695742`: https://doi.org/10.6084/m9.figshare.4695742
+.. _`adk4AKE.psf`: https://www.dropbox.com/sh/ln0klc9j7mhvxkg/AAAL5eP1vrn0tK-67qVDnKeua/Trajectories/equilibrium/adk4AKE.psf
+.. _`1ake_007-nowater-core-dt240ps.dcd`: https://www.dropbox.com/sh/ln0klc9j7mhvxkg/AABSaNJ0fRFgY1UfxIH_jWtka/Trajectories/equilibrium/1ake_007-nowater-core-dt240ps.dcd
